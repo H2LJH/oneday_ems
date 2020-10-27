@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class EmsVO {
 	
-	private int	id; 			// NUMBER	NOT NULL	PRIMARY KEY
+	private long   id; 			// NUMBER	NOT NULL	PRIMARY KEY
 	private String from_email;	//	nVARCHAR2(30)	NOT NULL	
 	private String to_email;	//	nVARCHAR2(30)	NOT NULL	
 	private String s_date;		//	nVARCHAR2(10)		

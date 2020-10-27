@@ -11,6 +11,7 @@
     
 	<typeAliases>
 		<typeAlias type="com.biz.ems.DTO.EmsVO" alias="emsVO"/>
+		<typeAlias type="com.biz.ems.DTO.EmsFileNameVO" alias="emsFileVO"/>
 	</typeAliases>
 
  </configuration>

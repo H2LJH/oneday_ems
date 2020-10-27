@@ -7,8 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<link rel="stylesheet" href="${rootPath}/resources/css/form.css?=ver=1">
+<link rel="stylesheet" href="${rootPath}/resources/css/button.css?=ver=1">
+
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://kit.fontawesome.com/c1d8b25418.js" crossorigin="anonymous"></script>
+
 <title>나의 홈페이지</title>
 <style>
 	html, body{
@@ -17,7 +22,7 @@
 		height: 100%;
 		width: 100%;
 	}
-	
+
 	section{
 		display: flex;
 		justify-content: center;
@@ -52,73 +57,46 @@
 		width: 95%;
 	}
 	
-	form{
-		width: 80%;
-		height:100%;
-		
+	article{
+		width: 100%;
+		height: 100%;
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
+    	flex-direction: column;
 	}
-	
-	form input, form textarea, form button{
-		width: 95%;
-		margin-bottom: 20px;
-	}
-	
-	form input{
-		outline: none;
-    	border: none;
-    	border-bottom: 1px solid #555;
-	}
-	
-	form input:nth-child(5){
-		border: none;
-		text-align: center;
-	}
-	
-	form textarea {
-		height: 50%;
-		resize: none;
-	}
-	
-	
-	input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-	 transition: background-color 5000s ease-in-out 0s;
-	 -webkit-transition: background-color 9999s ease-out;
-     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-     -webkit-text-fill-color: black !important;
-   }
-	
 </style>
 <script>
 	document.addEventListener("DOMContentLoaded", function()
 	{
+        let nav_button = document.querySelectorAll(".nav_button");
+        nav_button.forEach(function(nav_button)
+        {
+            nav_button.onclick = function()
+            { document.location.href = "${rootPath}/" + nav_button.value; }
+        })
 	})
 </script>
 </head>
 <body>
 <section>
 	<div>
-		<button>보낸 메일함</button>
-		<button>받은 메일함</button>
+		<button class="nav_button" value="email/send">보낸 메일함</button>
+		<button class="nav_button">메일 작성</button>
 	</div>
-	<form method="post" action="${rootPath}/file/save/" enctype="multipart/form-data">
-	
-		<input name="to_email" placeholder="받는 Email">
-		<input name="from_email" placeholder="보내는 Email">
-		<input name="s_subject" placeholder="제목">
-		
-		<textarea name="s_content" placeholder="내용"></textarea>
-		
-		<input name="files" type="file" multiple="multiple">
-		
-		<button type="submit">전송</button>
-	</form>
+	<article>
+		<c:choose>
+			<c:when test="${BODY == 'SEND_HOME'}">
+				<%@ include file="/WEB-INF/views/ems/send.jspf" %>
+			</c:when>
+			
+			<c:when test="${BODY == 'DETAIL_HOME'}">
+				<%@ include file="/WEB-INF/views/ems/detail.jspf" %>
+			</c:when>
+			
+			<c:otherwise>
+				<%@ include file="/WEB-INF/views/ems/write.jspf" %>
+			</c:otherwise>
+		</c:choose>
+	</article>
 </section>
 </body>
 </html>

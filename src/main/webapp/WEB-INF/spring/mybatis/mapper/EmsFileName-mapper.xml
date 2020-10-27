@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.biz.ems.DAO.EmsFileNameDAO">
+ 
+ 	<select id="selectAll" resultType="emsFileVO">
+ 	</select>
+ 	
+ 	<select id="findByDetail" resultType="emsFileVO">
+ 	 		SELECT files.s_id, files.s_file 
+    		FROM tbl_file files 
+        		LEFT JOIN tbl_ems ems on ems.id = files.s_id
+        			WHERE files.s_id = #{id}
+ 	</select>
+ 	 	
+ 	<insert id="insert" parameterType="emsFileVO"> 	 	
+		INSERT INTO tbl_file ( id, s_id, s_file ) VALUES ( seq_file.NEXTVAL, #{s_id}, #{s_file} )	 
+	</insert>
+ 
+ 	<update id="update" parameterType="emsFileVO">
+ 	
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		delete tbl_file WHERE s_id = #{s_id}
+ 	</delete>
+
+ </mapper> 

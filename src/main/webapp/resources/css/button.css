@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s;
+	-webkit-transition: background-color 9999s ease-out;
+	-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+	-webkit-text-fill-color: black !important;
+}
+
+input:focus::placeholder {
+	color: transparent;
+}
+
+.delete_button {
+	width: 95%;
+	background-color: rgba(255, 1, 22, 0.8);
+	color: white;
+	border: none;
+	outline: none;
+	font-weight: 1000;
+	margin: 5px auto;
+}
+
+.delete_button:hover {
+	color: #f7862c;
+	cursor: pointer;
+}

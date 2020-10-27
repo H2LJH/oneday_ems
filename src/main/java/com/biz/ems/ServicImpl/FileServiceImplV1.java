@@ -15,18 +15,28 @@ public class FileServiceImplV1 implements FileService
 {
 	public String[] save(List<MultipartFile> files)
 	{
+		
 		File saveFile;
 		String[] arrNames = new String[files.size()];
-		String rootPath = "C:/bizwork/workspace/upload";
+		String rootPath = "C:/workspace/upload";
 		int index = 0;
 		
-		for(MultipartFile one : files)
+		File dir = new File(rootPath);
+		
+		if(!dir.exists()) 
+			dir.mkdirs(); 
+		
+		if(files.get(index).getSize() != 0)
 		{
-			arrNames[index] = UUID.randomUUID() + one.getOriginalFilename();
-			saveFile = new File(rootPath, arrNames[index]);
-			try { one.transferTo(saveFile); } 
-			catch (IllegalStateException | IOException e)  { e.printStackTrace(); }
-			index++;
+			for(MultipartFile one : files)
+			{
+				arrNames[index] = one.getOriginalFilename();
+				arrNames[index] = UUID.randomUUID() + one.getOriginalFilename();
+				saveFile = new File(rootPath, arrNames[index]);
+				try { one.transferTo(saveFile); } 
+				catch (IllegalStateException | IOException e)  { e.printStackTrace(); }
+				index++;
+			}
 		}
 		
 		return arrNames;

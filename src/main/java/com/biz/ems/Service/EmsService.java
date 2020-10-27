@@ -2,14 +2,12 @@ package com.biz.ems.Service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.biz.ems.DTO.EmsVO;
 
-public interface EmsService 
+public interface EmsService extends GenericService<EmsVO, String>
 {
-	public List<EmsVO> selectAll();
-	public EmsVO findById(String id);
-	
-	public int insert(EmsVO vo);
-	public int update(String id);
-	public int delete(String id);
+	public int flag(EmsVO vo , List<MultipartFile> files, int flag);
+	public int selected_delete(String[] pk);
 }

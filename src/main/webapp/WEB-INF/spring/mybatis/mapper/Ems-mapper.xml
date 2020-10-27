@@ -9,7 +9,7 @@
  		SELECT * FROM tbl_ems
  	</select>
  	
- 	<select id="findBySeq" resultType="emsVO">
+ 	<select id="findById" resultType="emsVO">
  		SELECT * FROM tbl_ems WHERE id = #{id}
  	</select>
  	 	
@@ -18,28 +18,30 @@
 	(
 		id,        from_email, to_email,
 		s_date,	   s_time,     s_subject,			
-		s_content, s_file1,    s_file2
+		s_content
 	)
 	 VALUES 
 	 (		
 		seq_ems.NEXTVAL, #{from_email}, #{to_email},		
-		#{s_date},    #{s_time},  #{s_subject},		
-		#{s_content}, #{s_file1}, #{s_file2}
+		#{s_date},       #{s_time},     #{s_subject},		
+		#{s_content}
 	 )
+	 
+	 	 
+	 <selectKey resultType="_long" order="AFTER" keyProperty="id" >
+	 	  SELECT seq_ems.CURRVAL FROM DUAL
+	 </selectKey>
 	</insert>
  
  	<update id="update" parameterType="emsVO">
  		UPDATE tbl_ems SET
-			id	= #{id}
 			from_email = #{from_email},
 			to_email   = #{to_email},
 			s_date	   = #{s_date},
 			s_time	   = #{s_time},
 			s_subject  = #{s_subject},
-			s_content  = #{s_content},
-			s_file1	   = #{s_file1},
-			s_file2	   = #{s_file2}
- 		WHERE bl_seq = #{bl_seq}
+			s_content  = #{s_content}
+ 		WHERE id = #{id}
  	</update>
  	
  	<delete id="delete">
