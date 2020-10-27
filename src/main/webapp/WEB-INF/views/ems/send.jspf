@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () =>
     	</tr>
    </c:forEach>
  </table>
-   	<button class="delete_button" type="button">삭제</button>
-   	
+ 
+ <c:if test="${not empty SEND_LIST}">
+   	<button class="delete_button" type="button">다중삭제</button>
+ </c:if>
    	
    	
    	
